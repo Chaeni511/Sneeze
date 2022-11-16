@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <img :src="poster_path" class="d-block w-100" :alt="movie.title ">
+  <div class="carousel-item active" data-bs-interval="200">
+    <img :src="backdrop_path" class="d-block w-100" :alt="movie.title ">
     <div class="carousel-caption d-none d-md-block">
       <h5>{{ movie.title }}</h5>
       <p>{{ movie.overview }}</p>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
   },
   data() {
     return {
-      poster_path: `https://image.tmdb.org/t/p/original/${ this.movie.poster_path }`
+      backdrop_path: `https://image.tmdb.org/t/p/original/${ this.movie.backdrop_path }`
     }
   }
 }

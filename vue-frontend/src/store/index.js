@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     movies: [],
     movieGenre: [],
     cosMovies: [],
+    top5Movies: [],
 
   },
   getters: {
@@ -24,6 +26,9 @@ export default new Vuex.Store({
     GET_COS_MOVIE(state, cosMovies) {
       state.cosMovies = cosMovies
     },
+    GET_TOP5_MOVIES(state, top5Movies) {
+      state.top5Movies = top5Movies
+    }
   },
   actions: {
     getMovies(context) {
@@ -49,6 +54,25 @@ export default new Vuex.Store({
           // console.log(res.data.results)
           context.commit('GET_COS_MOVIE', res.data.results)
         })
+    },
+    // 인기도 탑 5
+    getTop5Movies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/`,
+        // headers: {
+        //   Authorization: `Token ${context.state.token}`
+        // },
+      })
+        .then((res) => {
+          console.log(res)
+          const movies = res.data
+          _.sortBy(movies, 'popularity').reverse()
+          const top5Movies = movies.slice(0, 5)
+          console.log(top5Movies)
+          context.commit('GET_TOP5_MOVIES', top5Movies)
+        })
+        .catch(err => console.log(err))
     },
   },
   modules: {
