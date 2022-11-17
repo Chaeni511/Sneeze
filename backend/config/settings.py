@@ -36,11 +36,7 @@ INSTALLED_APPS = [
     'community',
 
     'rest_framework',
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 1117accounts
     # CORS policy
     "corsheaders",
 
@@ -55,12 +51,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
 
-<<<<<<< HEAD
-=======
+
     # OpenAPI 3.0
     'drf_spectacular',
 
->>>>>>> 1117accounts
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

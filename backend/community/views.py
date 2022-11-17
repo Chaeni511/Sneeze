@@ -12,8 +12,8 @@ from .serializers import CommunityListSerializer, CommentSerializer
 
 
 @api_view(['GET', 'POST'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def community_list_create(request):
   if request.method == 'GET':
     communities = Community.objects.all()
@@ -27,8 +27,8 @@ def community_list_create(request):
 
 
 @api_view(['GET'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def community_detail(request, community_pk):
   community = get_object_or_404(Community, pk=community_pk)
 
@@ -37,8 +37,8 @@ def community_detail(request, community_pk):
     
 
 @api_view(['GET'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def comment_list(request, community_pk):
     community = get_object_or_404(Community, pk=community_pk)
     comments = community.comment_set.all()
@@ -47,8 +47,8 @@ def comment_list(request, community_pk):
 
 
 @api_view(['POST'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def create_comment(request, community_pk):
     community = get_object_or_404(Community, pk=community_pk)
     serializer = CommentSerializer(data=request.data)
@@ -60,8 +60,8 @@ def create_comment(request, community_pk):
 
 
 @api_view(['PUT', 'DELETE'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def community_update_delete(request, community_pk):
   community = get_object_or_404(Community, pk=community_pk)
 
@@ -79,8 +79,8 @@ def community_update_delete(request, community_pk):
 
 
 @api_view(['DELETE'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def comment_delete(request, community_pk, comment_pk):
   community = get_object_or_404(Community, pk=community_pk)
   comment = community.comment_set.get(pk=comment_pk)
