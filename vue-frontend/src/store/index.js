@@ -62,6 +62,7 @@ export default new Vuex.Store({
     },
     LOGOUT(state) {
       state.token = ! state.token
+      state.username = ''
       router.push({ name: 'Home' })
     }
   },

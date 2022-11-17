@@ -11,9 +11,21 @@
         <router-link :to="{ name: 'Movie' }">Movie</router-link>
         <router-link :to="{ name: 'Community' }">Community</router-link>
         <router-link :to="{ name: 'Profile', params: { username: username }  }">Profile</router-link>
-        <router-link :to="{ name: 'Signup' }">Signup</router-link>
-        <router-link :to="{ name: 'Login' }">Login</router-link>
-        <button @click="logOut">Logout</button>
+        <!-- <router-link
+          :to="{ name: 'Signup' }"
+          :v-show="isLogin"
+        >Signup</router-link>
+        <router-link
+          :to="{ name: 'Login' }"
+          :v-show="isLogin"
+        >Login</router-link> -->
+        <!-- <router-link
+          @click.native="logOut"
+          :v-show="!this.$store.getters.isLogin"
+        >Logout</router-link> -->
+        <button @click="signUp" id="signup" :v-show="isLogin">Signup</button>
+        <button @click="logIn" id="login" :v-show="isLogin">Login</button>
+        <button @click="logOut" id="logout" :v-show="isLogin">Logout</button>
         <router-link :to="{ name: 'MovieDetail', params: { movie_id: '505642'} }">Detail</router-link>
 
         <form class="d-flex" role="search">
@@ -33,11 +45,26 @@ export default {
     username(){
       return this.$store.state.username
     },
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
   },
   methods: {
     logOut() {
       this.$store.commit('LOGOUT')
     },
+    // signUp() {
+    //   this.$router.push({ name: 'Signup'})
+    // },
+    // logIn() {
+    //   this.$router.push({ name: 'Login' })
+    // },
+    check() {
+      console.log(this.isLogin)
+    }
+  },
+  created() {
+    this.check()
   }
 }
 </script>
